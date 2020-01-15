@@ -7,7 +7,7 @@ using System;
     For example, given a population with weights [100, 200, 150, 80] and a boat limit of 200, 
     the smallest number of boats required will be three. 
 */
-namespace challenges {
+namespace challenges.DCP {
     public static class RescueBoats {
         public static int NumberOfBoats(int[] weights, int limit) {
             DataStructures.Heap<int> maxRemainingCap = new DataStructures.Heap<int>();
@@ -21,7 +21,6 @@ namespace challenges {
                     boats++;
                 }
             }
-            Console.WriteLine("[" + string.Join(",", maxRemainingCap.ShowHeap()) + "]");
             return boats;
         }
     }

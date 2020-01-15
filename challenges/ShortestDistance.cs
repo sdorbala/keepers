@@ -21,7 +21,7 @@ using System.Collections.Generic;
     }
     In this case, the shortest valid path would be 0 -> 2 -> 4 -> 0, with a distance of 28.
 */
-namespace challenges {
+namespace challenges.DCP {
     public static class ShortestDistance {
         public static List<int> GetPath(Dictionary<int, int> elevations, Dictionary<int, Dictionary<int, int>> paths) {
             List<int> path = new List<int>();
