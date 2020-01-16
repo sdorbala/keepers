@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 /*
     A competitive runner would like to create a route that starts and ends at his house, 
@@ -24,8 +25,55 @@ using System.Collections.Generic;
 namespace challenges.DCP {
     public static class ShortestDistance {
         public static List<int> GetPath(Dictionary<int, int> elevations, Dictionary<int, Dictionary<int, int>> paths) {
-            List<int> path = new List<int>();
-            return path;
+            List<int> shortest = new List<int>();
+            int startPoint = 0, nextPoint = -1, curShortest = int.MaxValue;
+            shortest.Add(startPoint);
+            foreach (var path in paths[startPoint]) {
+                if (elevations[startPoint] > elevations[path.Key])
+                    continue;
+                if (curShortest > path.Value) {
+                    curShortest = Math.Min(curShortest, path.Value);
+                    nextPoint = path.Key;
+                }
+            }
+            shortest.Add(nextPoint);
+            int prevPoint = -1;
+            while (nextPoint != startPoint) {
+                prevPoint = nextPoint;
+                curShortest = int.MaxValue;
+                foreach (var path in paths[nextPoint]) {
+                    if (elevations[nextPoint] > elevations[path.Key])
+                        continue;
+                    if (curShortest > path.Value) {
+                        curShortest = Math.Min(curShortest, path.Value);
+                        nextPoint = path.Key;
+                    }
+                }
+                if (nextPoint != prevPoint) {
+                    shortest.Add(nextPoint);
+                }
+                else {
+                    break;
+                }
+            }
+            while (nextPoint != startPoint) {
+                prevPoint = nextPoint;
+                curShortest = int.MaxValue;
+                foreach (var path in paths[nextPoint]) {
+                    if (elevations[nextPoint] < elevations[path.Key])
+                        continue;
+                    if (curShortest > path.Value) {
+                        curShortest = Math.Min(curShortest, path.Value);
+                        nextPoint = path.Key;
+                    }
+                }
+                if (nextPoint != prevPoint) {
+                    shortest.Add(nextPoint);
+                } else {
+                    break;
+                }
+            }
+            return shortest;
         }
     }
 }
