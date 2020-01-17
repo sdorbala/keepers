@@ -38,6 +38,7 @@ namespace challenges.DCP {
             }
             shortest.Add(nextPoint);
             int prevPoint = -1;
+            // going up on the elevation
             while (nextPoint != startPoint) {
                 prevPoint = nextPoint;
                 curShortest = int.MaxValue;
@@ -56,6 +57,7 @@ namespace challenges.DCP {
                     break;
                 }
             }
+            // going down on the elevation
             while (nextPoint != startPoint) {
                 prevPoint = nextPoint;
                 curShortest = int.MaxValue;
