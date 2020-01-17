@@ -64,6 +64,9 @@ namespace challenges
 
             Console.WriteLine($"The shortest path is {string.Join(",", DCP.ShortestDistance.GetPath(elevations, map))}");
             #endregion
+
+            int[] sortedArray = { 5, 6, 7 , 8, 9, 10, 11 };
+            DataStructures.TreeNode tree = DCP.BalancedBST.BuildTree(sortedArray);
         }
     }
 }
